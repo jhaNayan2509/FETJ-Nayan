@@ -105,51 +105,51 @@ app.get(
 //   });
 // });
 
-// const { OAuth2Client } = require("google-auth-library");
-// const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-// app.get("/logout", (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).send("Error during logout");
-//     }
-
-//     // Attempt to invalidate Google session token
-//     try {
-//       const idToken = req.user?.idToken;
-//       if (idToken) {
-//         client.revokeToken({ token: idToken });
-//       }
-//     } catch (error) {
-//       console.error("Error revoking Google token:", error);
-//     }
-
-//     req.session = null;
-   
-//     res.redirect("/");
-//   });
-// });
-
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 app.get("/logout", (req, res) => {
-  const idToken = req.user?.idToken;
-  if (idToken) {
-    const logoutUrl = `https://accounts.google.com/o/oauth2/revoke?token=${idToken}`;
-    res.redirect(logoutUrl);
-  } else {
-    req.logout();
-    req.session.destroy((err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send("Error during logout");
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error during logout");
+    }
+
+    // Attempt to invalidate Google session token
+    try {
+      const idToken = req.user?.idToken;
+      if (idToken) {
+        client.revokeToken({ token: idToken });
       }
-      res.redirect("/");
-    });
-  }
+    } catch (error) {
+      console.error("Error revoking Google token:", error);
+    }
+
+    req.session = null;
+   
+    res.redirect("/");
+  });
 });
+
+// const { OAuth2Client } = require("google-auth-library");
+// const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// app.get("/logout", (req, res) => {
+//   const idToken = req.user?.idToken;
+//   if (idToken) {
+//     const logoutUrl = `https://accounts.google.com/o/oauth2/revoke?token=${idToken}`;
+//     res.redirect(logoutUrl);
+//   } else {
+//     req.logout();
+//     req.session.destroy((err) => {
+//       if (err) {
+//         console.error(err);
+//         return res.status(500).send("Error during logout");
+//       }
+//       res.redirect("/");
+//     });
+//   }
+// });
 
 
 

@@ -50,3 +50,32 @@ h2 {
 #user-info img {
     border-radius: 50%;
 }
+
+#display-input {
+    margin-top: 20px;
+}
+
+#display-input label {
+    margin-right: 10px;
+}
+
+#numberOfLines {
+    width: 50px;
+}
+
+button {
+    padding: 8px;
+    background-color: #1a73e8; /* Gmail's primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1565c0; /* Darker shade on hover */
+}
+
+#line-display {
+    margin-top: 20px;
+}

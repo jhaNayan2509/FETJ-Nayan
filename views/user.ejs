@@ -13,7 +13,37 @@
         <h2>Hello <%= user.displayName %> [<a href="/logout">Sign out</a>]</h2>
         <p>You are signed in with the email <%= user.emails[0].value %></p>
         <p>Indian Time: <%= indianTime %></p>
+
+         <!-- Input box and Display button -->
+        <div id="display-input">
+            <label for="numberOfLines">Number of Lines:</label>
+            <input type="number" id="numberOfLines" name="numberOfLines" min="1" max="100" placeholder="Enter a number">
+            <button onclick="displayPattern()">Display</button>
+        </div>
+
+        <!-- Display area for lines -->
+        <div id="line-display"></div>
     </div>
 
+     <script>
+        function displayPattern() {
+            const numberOfLines = document.getElementById("numberOfLines").value;
+            const lineDisplay = document.getElementById("line-display");
+            const patternString = "FORMULAQSOLUTIONS";
+            // Clear previous content
+            lineDisplay.innerHTML = "";
+
+            // Display pattern
+             for (let i = 0; i < numberOfLines; i++) {
+            const startIndex = i;
+            const length = Math.min(numberOfLines - i, patternString.length - startIndex);
+            const substring = patternString.substring(startIndex, startIndex + length);
+
+            let line = " ".repeat(numberOfLines - i);
+            line += substring;
+            lineDisplay.innerHTML += "<p>" + line + "</p>";
+        }
+        }
+    </script>
 </body>
 </html>

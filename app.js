@@ -3,6 +3,7 @@ const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 require("dotenv").config();
+const path = require("path");
 
 const app = express();
 
@@ -18,21 +19,8 @@ app.use(
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, ".")));
 
-// Set up Google OAuth
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: process.env.GOOGLE_CLIENT_ID,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//       callbackURL: "http://localhost:3000/auth/google/callback",
-//       prompt: "select_account",
-//     },
-//     (accessToken, refreshToken, profile, done) => {
-//       return done(null, profile);
-//     }
-//   )
-// );
 passport.use(
   new GoogleStrategy(
     {
@@ -88,23 +76,6 @@ app.get(
 );
 
 
-// app.get("/logout", (req, res) => {
-//   req.logout((err) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).send("Error during logout");
-//     }
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.error(err);
-//         return res.status(500).send("Error during logout");
-//       }
-//       req.session = null;
-//       res.redirect("/");
-//     });
-//   });
-// });
-
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -130,35 +101,6 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
   });
 });
-
-// const { OAuth2Client } = require("google-auth-library");
-// const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-// app.get("/logout", (req, res) => {
-//   const idToken = req.user?.idToken;
-//   if (idToken) {
-//     const logoutUrl = `https://accounts.google.com/o/oauth2/revoke?token=${idToken}`;
-//     res.redirect(logoutUrl);
-//   } else {
-//     req.logout();
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.error(err);
-//         return res.status(500).send("Error during logout");
-//       }
-//       res.redirect("/");
-//     });
-//   }
-// });
-
-
-
-
-
-
-
-
-
 
 
 // Start the server

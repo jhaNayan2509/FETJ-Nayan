@@ -1,0 +1,52 @@
+/* public/styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+}
+
+h2 {
+    /* color: #3498db; */
+    color: #202124; /* Gmail's primary text color */
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#login-container {
+    /* margin-top: 50px; */
+    text-align: center;
+}
+
+#login-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    /* background-color: #3498db;
+    color: white;
+    text-decoration: none; */
+    background-color: #1a73e8; /* Gmail's primary button color */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#login-container a:hover {
+    /* background-color: #2980b9; */
+    background-color: #1565c0;
+}
+
+#user-info {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#user-info img {
+    border-radius: 50%;
+}

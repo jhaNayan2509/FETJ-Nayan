@@ -23,22 +23,23 @@
 
         <!-- Display area for lines -->
         <div id="line-display"></div>
-    </div>
+    
 
-    <script>
+<script>
     function displayPattern() {
         const numberOfLines = document.getElementById("numberOfLines").value;
         const lineDisplay = document.getElementById("line-display");
         const str = "FORMULAQSOLUTIONS";
         let pattern = '';
 
-        // ODD ONE
+        //ODD ONE
         if (numberOfLines % 2 !== 0) {
             let start = 0;
             let end = 1;
             let sp = Math.ceil(numberOfLines / 2);
+            let i = 0;
 
-            for (let i = 1; i <= Math.ceil(numberOfLines / 2) + 1 && start !== end; i++) {
+            for (i = 1; i <= Math.ceil(numberOfLines / 2) + 1 && start !== end; i++) {
                 pattern += ' '.repeat(sp);
                 if (start < end) {
                     pattern += str.substring(start, end);
@@ -51,7 +52,7 @@
                 end += 3;
                 end %= str.length;
                 sp--;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
 
             if (start === end) {
@@ -61,7 +62,7 @@
                 sp--;
                 start++;
                 end = start + 2;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
 
             for (; i <= Math.ceil(numberOfLines / 2) + 1; i++) {
@@ -73,7 +74,7 @@
                 end += 3;
                 end %= str.length;
                 sp--;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
 
             sp = 1;
@@ -90,7 +91,7 @@
                 end %= str.length;
                 sp++;
                 if (start === 0) break;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
 
             pattern += '<br>';
@@ -106,7 +107,7 @@
                 end--;
                 end %= str.length;
                 sp++;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
         }
 
@@ -115,8 +116,9 @@
             let start = 0;
             let end = 1;
             let sp = Math.ceil(numberOfLines / 2);
+            let i = 0;
 
-            for (let i = 1; i <= Math.ceil(numberOfLines / 2) + 1 && start !== end; i++) {
+            for (i = 1; i <= Math.ceil(numberOfLines / 2) + 1 && start !== end; i++) {
                 pattern += ' '.repeat(sp);
                 if (start < end) {
                     pattern += str.substring(start, end);
@@ -129,7 +131,7 @@
                 end += 3;
                 end %= str.length;
                 sp--;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
 
             if (start === end) {
@@ -139,7 +141,7 @@
                 sp--;
                 start++;
                 end = start + 2;
-                pattern += '</p><p>';
+                pattern += '<br>';
             }
         }
 
@@ -149,5 +151,6 @@
 </script>
 
 
+</div>
 </body>
 </html>
